@@ -8,6 +8,7 @@ import kotlinx.coroutines.launch
 import ru.usedesk.chat_sdk.data.repository.api.ChatApi
 import ru.usedesk.chat_sdk.data.repository.configuration.UserInfoRepository
 import ru.usedesk.chat_sdk.di.IRelease
+import ru.usedesk.chat_sdk.entity.UsedeskChatConfiguration
 import javax.inject.Inject
 
 internal class PreparationInteractor @Inject constructor(
@@ -35,6 +36,12 @@ internal class PreparationInteractor @Inject constructor(
             }
             onResult(result)
         }
+    }
+
+    override fun updateConfig(
+        configuration: UsedeskChatConfiguration,
+    ) {
+        userInfoRepository.updateConfiguration { configuration }
     }
 
     override fun release() {
